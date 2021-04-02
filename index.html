@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        input[type=submit] {
+            background-color: rgb(0, 165, 129);
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        input[type=submit]:hover {
+            background-color: rgb(0, 165, 129);
+        }
+
+        input[type=text] {
+            width: 40%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin: 12px 0;
+            resize: vertical;
+            font-size: 100%;
+        }
+
+        body {
+            text-align: center;
+            margin-top: 100px;
+        }
+
+        input[type="checkbox"] {
+            display: inline-block;
+            width: 19px;
+            height: 19px;
+        }
+
+        .formclass {
+            box-sizing: border-box;
+            border-radius: 15px;
+            background-color: #f2f2f2;
+            padding: 100px;
+            width: 50%;
+            margin: 0 auto;
+        }
+
+        table {
+            width: 100%;
+            font: 17px Calibri;
+        }
+
+        table,
+        th,
+        td {
+            border: solid 1px #DDD;
+            border-collapse: collapse;
+            padding: 2px 3px;
+            text-align: center;
+        }
+
+        input[type='button'] {
+            font: 15px Calibri;
+            cursor: pointer;
+            border: none;
+            color: #FFF;
+        }
+
+        input[type='text'],
+        select {
+            font: 17px Calibri;
+            text-align: center;
+            border: solid 1px #CCC;
+            width: auto;
+            padding: 2px 3px;
+        }
+    </style>
+    <title>
+        JavaScript Form
+    </title>
+</head>
+
+<body id="body">
+    <div id="container" style="width:100%;">
+    </div>
+
+    <script>
+        var request = new XMLHttpRequest();
+        var down = document.getElementById("body");
+
+        var br = document.createElement("br");
+
+        var form = document.createElement("form");
+
+
+        var btget = document.createElement('input');
+        btget.setAttribute('type', 'button');    // SET ATTRIBUTES.
+        btget.setAttribute('value', 'FETCH USER DATA ');
+        btget.setAttribute('style', 'background-color:rgb(0, 165, 129);');
+        btget.setAttribute('onclick', "getData()");   // ADD THE BUTTON's 'onclick' EVENT.
+        body.appendChild(btget);
+        form.setAttribute("class", "formclass");
+        form.setAttribute("id", "myForm");
+
+        var firstName = document.createElement("input");
+        firstName.setAttribute("type", "text");
+        firstName.setAttribute("name", "First_Name");
+        firstName.setAttribute("placeholder", "First Name");
+
+        var lastname = document.createElement("input");
+        lastname.setAttribute("type", "text");
+        lastname.setAttribute("name", "Last_Name");
+        lastname.setAttribute("placeholder", "Last Name");
+
+        var sapID = document.createElement("input");
+        sapID.setAttribute("type", "text");
+        sapID.setAttribute("name", "SapId");
+        sapID.setAttribute("placeholder", "sapID");
+
+        // Create an input element for emailID 
+        var eID = document.createElement("input");
+        eID.setAttribute("type", "text");
+        eID.setAttribute("name", "Employee_ID");
+        eID.setAttribute("placeholder", "E-Mail ID");
+
+        var contact = document.createElement("input");
+        contact.setAttribute("type", "text");
+        contact.setAttribute("name", "Contact");
+        contact.setAttribute("placeholder", "contact");
+
+        var Location = document.createElement("input");
+        Location.setAttribute("type", "text");
+        Location.setAttribute("name", "Location");
+        Location.setAttribute("placeholder", "Location");
+
+        var GenderIsMale = document.createElement("input");
+        GenderIsMale.setAttribute("type", "radio");
+        GenderIsMale.setAttribute("name", "Gender");
+        GenderIsMale.setAttribute("value", "male");
+        GenderIsMale.setAttribute("id", "idmale");
+
+        var GenderIsFemale = document.createElement("input");
+        GenderIsFemale.setAttribute("type", "radio");
+        GenderIsFemale.setAttribute("name", "Gender");
+        GenderIsFemale.setAttribute("value", "female");
+        GenderIsMale.setAttribute("id", "idfemale");
+
+        var lang1 = document.createElement("input");
+        lang1.setAttribute("type", "checkbox");
+        lang1.setAttribute("name", "Languages");
+        lang1.setAttribute("value", "Hindi");
+
+        var lang2 = document.createElement("input");
+        lang2.setAttribute("type", "checkbox");
+        lang2.setAttribute("name", "Languages");
+        lang2.setAttribute("value", "English");
+
+        var lang3 = document.createElement("input");
+        lang3.setAttribute("type", "checkbox");
+        lang3.setAttribute("name", "Languages");
+        lang3.setAttribute("value", "Marathi");
+
+        var s = document.createElement("input");
+        s.setAttribute("type", "submit");
+        s.setAttribute("value", "Submit");
+        s.setAttribute('onclick', 'createNew(this)');
+
+        var nodename = document.createTextNode("FirstName:");
+
+        form.appendChild(nodename);
+        form.appendChild(firstName);
+        form.appendChild(br.cloneNode());
+
+        var nodelastname = document.createTextNode("LastName:");
+        form.appendChild(nodelastname);
+        form.appendChild(lastname);
+        form.appendChild(br.cloneNode());
+
+        var nodesapID = document.createTextNode("sapID:");
+        form.appendChild(nodesapID);
+        form.appendChild(sapID);
+        form.appendChild(br.cloneNode());
+
+        var nodeeID = document.createTextNode("Employee ID:");
+        form.appendChild(nodeeID);
+        form.appendChild(eID);
+        form.appendChild(br.cloneNode());
+
+        var nodecontact = document.createTextNode("contact:");
+        form.appendChild(nodecontact);
+        form.appendChild(contact);
+        form.appendChild(br.cloneNode());
+
+        var nodeLocation = document.createTextNode("Location:");
+        form.appendChild(nodeLocation);
+        form.appendChild(Location);
+        form.appendChild(br.cloneNode());
+
+        var node1 = document.createTextNode("Gender -      M:");
+        form.appendChild(node1);
+        form.appendChild(GenderIsMale);
+
+        var node2 = document.createTextNode("   F: ");
+        form.appendChild(node2);
+        form.appendChild(GenderIsFemale);
+
+        form.appendChild(br.cloneNode());
+
+        var langnode1 = document.createTextNode("Languages Known:");
+        form.appendChild(langnode1);
+
+        var langnode1 = document.createTextNode("Hindi");
+        form.appendChild(langnode1);
+        form.appendChild(lang1);
+
+        var langnode2 = document.createTextNode(" English:");
+        form.appendChild(langnode2);
+        form.appendChild(lang2);
+
+        var langnode3 = document.createTextNode(" Marathi:");
+        form.appendChild(langnode3);
+        form.appendChild(lang3);
+
+        form.appendChild(br.cloneNode());
+        // Append the submit button to the form 
+        form.appendChild(s);
+
+        document.getElementsByTagName("body")[0]
+            .appendChild(form);
+        const getData = () => {
+            console.log("Get Data");
+            request.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    //Create a table with the following data which came as a response from the server.
+                    createTable(JSON.parse(this.responseText));
+                }
+            };
+            request.open("GET", "http://localhost:3000/users", true);
+            request.send();
+        }
+
+        const createTable = (responseText) => {
+            console.log("inside create table" + responseText);
+            this.users = responseText;
+            // EXTRAC-T VALUE FOR TABLE HEADER.
+            for (var i = 0; i < this.users.length; i++) {
+                for (var key in this.users[i]) {
+                    if (this.col.indexOf(key) === -1) {
+                        this.col.push(key);
+                    }
+                }
+            }
+            // CREATE A TABLE.
+            var table = document.createElement('table');
+            table.setAttribute('id', 'booksTable');     // SET TABLE ID.
+
+            var tr = table.insertRow(-1);               // CREATE A ROW (FOR HEADER).
+            var idCol, index = [];
+            for (var h = 0; h < this.col.length; h++) {
+                // ADD TABLE HEADER.
+                var th = document.createElement('th');
+                if (this.col[h] == "id") {
+                    idCol = h;
+                }
+                th.innerHTML = this.col[h].replace('_', ' ');
+                tr.appendChild(th);
+            }
+
+            // ADD ROWS USING JSON DATA.-
+            for (var i = 0; i < this.users.length; i++) {
+
+                tr = table.insertRow(-1);           // CREATE A NEW ROW.
+                for (var j = 0; j < this.col.length; j++) {
+                    var tabCell = tr.insertCell(-1);
+                    tabCell.innerHTML = this.users[i][this.col[j]];
+                    console.log(this.users[i][this.col[6]]);
+                }
+                index.push(this.users[i][this.col[idCol]]);
+                console.log(index);
+                // DYNAMICALLY CREATE AND ADD ELEMENTS TO TABLE CELLS WITH EVENTS.
+                this.td = document.createElement('td');
+                // *** UPDATE.
+                tr.appendChild(this.td);
+                var btUpdate = document.createElement('input');
+                btUpdate.setAttribute('type', 'button');    // SET ATTRIBUTES.
+                btUpdate.setAttribute('value', 'Update');
+                btUpdate.setAttribute('id', + i);
+                btUpdate.setAttribute('style', 'background-color:rgb(0, 165, 129);');
+                btUpdate.setAttribute('onclick', `update(${index[i]})`);   // ADD THE BUTTON's 'onclick' EVENT.
+                this.td.appendChild(btUpdate);
+
+                // *** DELETE.
+                this.td = document.createElement('th');
+                tr.appendChild(this.td);
+                var btDelete = document.createElement('input');
+                btDelete.setAttribute('type', 'button');    // SET INPUT ATTRIBUTE.
+                btDelete.setAttribute('value', 'Delete');
+                btDelete.setAttribute('id', i);
+
+                btDelete.setAttribute('style', 'background-color:#ED5650;');
+                btDelete.setAttribute('onclick', `deleteuser(${index[i]})`);   // ADD THE BUTTON's 'onclick' EVENT.
+                this.td.appendChild(btDelete);
+            }
+            // ADD A ROW AT THE END WITH BLANK TEXTBOXES AND A DROPDOWN LIST (FOR NEW ENTRY).             
+            tr.appendChild(this.td);
+            var div = document.getElementById('container');
+            div.innerHTML = '';
+            div.appendChild(table);    // ADD THE TABLE TO THE WEB PAGE.
+        }
+        // Update DATA.
+        const update = (id) => {
+            console.log("Update   " + (id));
+            s.setAttribute("value", "Update");
+            s.setAttribute("id", id);
+            request.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    //Create a table with the following data which came as a response from the server.
+                    const data = JSON.parse(this.responseText);
+                    console.log(data)
+                    firstName.value = data.First_Name;
+                    lastname.value = data.Last_Name;
+                    sapID.value = data.SapId;
+                    eID.value = data.Employee_ID;
+                    contact.value = data.Contact;
+                    Location.value = data.Location;
+                    
+                }
+            };
+            request.open("GET", "http://localhost:3000/users/" + id, true);
+            request.send();
+        }
+        // DELETE DATA.
+        const deleteuser = (id) => {
+            alert("Delete  " + id);
+            request.open("DELETE", "http://localhost:3000/users/" + id);
+            request.send();
+            request.onload = function () {
+                if (request.status != 200) {
+                    console.log('ERROR');
+                } else {
+                    console.log('DELETED!');
+                }
+            };
+            request.onerror = function () {
+                console.log('NO CONNECTION');
+            };
+        }
+        this.col = [];
+
+        // CREATE NEW.
+        const createNew = (btn) => {
+            var myForm = document.getElementById("myForm");
+            
+            var formData = new FormData(myForm);
+
+            formData.forEach(function (value, key) {               
+                formData[key] = value;
+            });
+
+            var users = JSON.stringify(formData);
+
+            alert("formData  " + users);
+
+            if (s.value == "Update") {
+                const id = btn.id;
+                console.log(id);
+                request.open("PUT", "http://localhost:3000/users/" + id, true);
+                request.setRequestHeader('Content-type', 'application/json; charset=utf-8');
+                request.onreadystatechange = function () {
+                    var users = JSON.parse(request.responseText);
+                    if (request.readyState == 4 && request.status == 200) {
+                        console.table(users);
+                    } else {
+                        console.error(users);
+                    }
+                }
+                request.send(users);
+                alert("Updated the data ");
+                s.setAttribute("value", "Submit");
+            }
+
+            else {
+                request.open("POST", "http://localhost:3000/users/");
+                request.setRequestHeader("Content-Type", "application/json");
+                request.onreadystatechange = function () {
+                    if (this.readyState == 4 && this.status == 200) {
+
+                    }
+                };
+                request.send(users);
+                alert("Posted the data ")
+            }
+        }
+
+    </script>
+</body>
+
+</html>
